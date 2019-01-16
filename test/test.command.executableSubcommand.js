@@ -19,6 +19,9 @@ exec(bin + ' install', function (error, stdout, stderr) {
 
 // subcommand bin file with explicit extension
 exec(bin + ' publish', function (error, stdout, stderr) {
+  console.log(stderr);
+  console.log(stdout);
+  console.log(error);
   stdout.should.equal('publish\n');
 });
 
