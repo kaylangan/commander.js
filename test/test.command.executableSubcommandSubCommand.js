@@ -13,8 +13,8 @@ var exec = require('child_process').exec
 var bin = path.join(__dirname, './fixtures/pm')
 // should list commands at top-level sub command
 exec(bin + ' cache help', function (error, stdout, stderr) {
-  stderr.should.containEql('~test~');
-  stderr.should.containEql('cache');
+  stdout.should.containEql('Usage:');
+  stdout.should.containEql('cache');
   stdout.should.containEql('validate');
 });
 
