@@ -20,7 +20,7 @@ exec(bin + ' cache help', function (error, stdout, stderr) {
 
 // should run sub-subcommand
 exec(bin + ' cache clear', function (error, stdout, stderr) {
-  stdout.should.equal('cache-clear\n');
+  stderr.should.equal('cache-clear\n');
   stderr.should.equal('');
 });
 
