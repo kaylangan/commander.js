@@ -8,3 +8,8 @@ var bin = path.join(__dirname, './fixtures-ts/pm.ts')
 exec(process.argv[0] + ' -r ts-node/register ' + bin + ' install', function (error, stdout, stderr) {
   stdout.should.equal('install\n');
 });
+
+// success case
+exec(process.argv[0] + ' -r ts-node/register ' + bin + ' install', function (error, stdout, stderr) {
+  stdout.should.equal('install\n');
+});
