@@ -10,6 +10,6 @@ exec(process.argv[0] + ' -r ts-node/register ' + bin + ' install', function (err
 });
 
 // success case
-exec(process.argv[0] + ' -r ts-node/register ' + bin + ' install', function (error, stdout, stderr) {
-  stdout.should.equal('install\n');
+exec(process.argv[0] + ' -r ts-node/register ' + bin + ' publish', function (error, stdout, stderr) {
+  stdout.should.equal('publish\n');
 });
