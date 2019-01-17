@@ -46,6 +46,12 @@ jobs:
     vmImage: 'vs2017-win2016'
 
   steps:
+    - script: |
+        git config --global core.symlinks true
+      displayName: 'Preserve symbolic links on check out'
+      
+    - checkout: self
+    
     - task: NodeTool@0
       inputs:
         versionSpec: '8.x'
