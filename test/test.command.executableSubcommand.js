@@ -23,7 +23,7 @@ exec('node ' + bin + ' publish', function (error, stdout, stderr) {
 });
 
 // spawn EACCES
-exec('node ' + bin + ' search', function (error, stdout, stderr) {
+exec('sudo node ' + bin + ' search', function (error, stdout, stderr) {
   // TODO error info are not the same in between <v0.10 and v0.12
   stderr.should.equal('search\n');
 });
