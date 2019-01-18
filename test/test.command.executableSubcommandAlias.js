@@ -17,7 +17,12 @@ exec(bin + ' p', function (error, stdout, stderr) {
 // spawn EACCES
 exec(bin + ' s', function (error, stdout, stderr) {
   // error info are not the same in between <v0.10 and v0.12
-  should.notEqual(0, stderr.length);
+  // search command works on windows
+  if (process.platform === 'win32') {
+    stdout.should.equal('search\n');
+  } else {
+    should.notEqual(0, stderr.length);
+  }
 });
 
 // when `bin` is a symbol link for mocking global install
