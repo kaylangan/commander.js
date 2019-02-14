@@ -1,11 +1,12 @@
 
 const SKIPPED_MESSAGE = '**SKIPPED**';
 
-exports.skipOnWindows = function() {
-    if (process.platform == 'win32') {
-        process.stdout.write(SKIPPED_MESSAGE);
-        return true;
-    }
+exports.isWindows = function() {
+    return process.platform == 'win32';
+}
+
+exports.skip = function() {
+    process.stdout.write(SKIPPED_MESSAGE);
 }
 
 exports.isSkipped = function(stdout) {

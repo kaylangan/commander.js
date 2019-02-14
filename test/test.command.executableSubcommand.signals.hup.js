@@ -4,7 +4,10 @@ var spawn = require('child_process').spawn,
   utils = require('./utils.js');
 
 // Skip this test for Windows since signals are unsupported
-if (utils.skipOnWindows()) return;
+if (utils.isWindows()) {
+  utils.skip();
+  return;
+}
 
 var bin = path.join(__dirname, './fixtures/pm');
 var proc = spawn(bin, ['listen'], {});
