@@ -1,28 +1,26 @@
 var spawn = require('child_process').spawn,
   path = require('path'),
-  should = require('should');
+  should = require('should'),
+  utils = require('./utils.js');
+
+// Skip this test for Windows since signals are unsupported
+if (utils.skipOnWindows()) return;
 
 var bin = path.join(__dirname, './fixtures/pm');
 var proc = spawn(bin, ['listen'], {});
 
 var output = '';
-// Skip this test for Windows since signals are unsupported
-if (process.platform === 'win32') {
-  process.stdout.write('SKIP ON WINDOWS');
-  return;
-} else {
-  proc.stdout.on('data', function (data) {
-    output += data.toString();
-  });
-  
-  // Set a timeout to give 'proc' time to setup completely
-  setTimeout(function () {
-    proc.kill('SIGHUP');
-  
-    // Set another timeout to give 'prog' time to handle the signal
-    setTimeout(function() {
-      output.should.equal('SIGHUP\n');
-    }, 1000);
-  
-  }, 2000);
-}
+proc.stdout.on('data', function (data) {
+  output += data.toString();
+});
+
+// Set a timeout to give 'proc' time to setup completely
+setTimeout(function () {
+  proc.kill('SIGHUP');
+
+  // Set another timeout to give 'prog' time to handle the signal
+  setTimeout(function() {
+    output.should.equal('SIGHUP\n');
+  }, 1000);
+
+}, 2000);
